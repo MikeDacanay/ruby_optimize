@@ -1,0 +1,15 @@
+#1 Retrieve all players, then write a program that will loop through each player and display their team name, mascot and stadium. How many queries have we done?
+
+players = Player.all
+players.each do |player|
+	team=player.team
+	puts "#{team.name} #{team.stadium} #{team.mascot}"
+end
+
+#2 Retrieve all players and write a program to loop through each player and their team name, mascot and stadium using .includes. How many queries have we done now?
+
+players = Player.includes(:team).all
+players.each do |player|
+	team=player.team
+	puts "#{team.name} #{team.stadium} #{team.mascot}"
+end
