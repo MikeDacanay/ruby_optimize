@@ -13,3 +13,20 @@ players.each do |player|
 	team=player.team
 	puts "#{team.name} #{team.stadium} #{team.mascot}"
 end
+
+#3 Retrieve all players from the 'Chicago Bulls' by using .includes
+
+Player.includes(:team).where("teams.name = 'Chicago Bulls'").references(:team)
+
+#4 Retrieve all players along with the team name that play at the 'Staples Center'
+
+Player.joins(:team).select("players.name as Player,  teams.name as Team").where("teams.stadium = 'Staples Center'")
+
+5# Retrieve all teams that have any player that start their name with the letter 'Z' by using .includes and .joins
+
+Team.includes(:players).where("players.name LIKE ?", "Z%")
+
+Team.joins(:players).where("players.name LIKE 'Z%'").select("teams.name as team_name", "teams.*", "players.*")
+
+
+
